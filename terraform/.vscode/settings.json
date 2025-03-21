@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+      "*.yaml": "yaml",
+      "*.yml": "yaml"
+    },
+    "yaml.schemas": {
+      "kubernetes": "/*.yaml" // Optional: Enable Kubernetes schema
+    },
+    "yaml.validate": true,
+    "yaml.format.enable": true
+  }

@@ -1,0 +1,27 @@
+pipeline {
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          sh 'docker build -t gcr.io/<your-project-id>/data-processor:latest ./docker'
+        }
+      }
+    }
+    stage('Push') {
+      steps {
+        script {
+          sh 'gcloud auth configure-docker'
+          sh 'docker push gcr.io/99458/data-processor:latest'
+        }
+      }
+    }
+    stage('Deploy') {
+      steps {
+        script {
+          sh 'kubectl apply -f ./kubernetes/app-deployment.yaml'
+        }
+      }
+    }
+  }
+}
